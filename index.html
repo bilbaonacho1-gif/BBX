@@ -5,18 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>BBX Soluciones Financieras</title>
   <meta name="description" content="BBX Soluciones Financieras: compra y venta de cheques y ECHEQ. Cambiá tus cheques de pago diferido por efectivo o invertí en cheques con rendimiento.">
+  <meta name="theme-color" content="#0B1120">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // La apertura se muestra una vez por visita (y nunca con "reducir movimiento")
+    (function () {
+      var root = document.documentElement, seen = false;
+      root.classList.add("js");
+      try { seen = sessionStorage.getItem("bbx-intro") === "1"; } catch (e) {}
+      if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) root.classList.add("no-intro");
+    })();
+  </script>
 </head>
 <body>
 <!--CONTENT-START-->
-<header class="site-header">
+<!-- Logo BBX (concepto 1): se reutiliza con <use href="#bbx-logo"> -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="bbx-logo" viewBox="0 0 180 72">
+    <path fill="currentColor" fill-rule="evenodd" d="M0 0H32A18 18 0 0 1 32 36H34A18 18 0 0 1 34 72H0ZM14 12V27H32A7.5 7.5 0 0 0 32 12ZM14 45V60H34A7.5 7.5 0 0 0 34 45Z"/>
+    <path fill="currentColor" fill-rule="evenodd" d="M58 0H90A18 18 0 0 1 90 36H92A18 18 0 0 1 92 72H58ZM72 12V27H90A7.5 7.5 0 0 0 90 12ZM72 45V60H92A7.5 7.5 0 0 0 92 45Z"/>
+    <path fill="#1D4EDB" d="M160 0H178L136 72H118Z"/>
+    <path fill="#2B6EFF" d="M116 0H134L176 72H158Z"/>
+  </symbol>
+</svg>
+
+<!-- Apertura: el logo se arma y la pantalla se abre en diagonal, como la X -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__half intro__half--a"></div>
+  <div class="intro__half intro__half--b"></div>
+  <div class="intro__logo">
+    <svg class="intro__mark" viewBox="0 0 180 72">
+      <path class="i-b1" fill="#FFFFFF" fill-rule="evenodd" d="M0 0H32A18 18 0 0 1 32 36H34A18 18 0 0 1 34 72H0ZM14 12V27H32A7.5 7.5 0 0 0 32 12ZM14 45V60H34A7.5 7.5 0 0 0 34 45Z"/>
+      <path class="i-b2" fill="#FFFFFF" fill-rule="evenodd" d="M58 0H90A18 18 0 0 1 90 36H92A18 18 0 0 1 92 72H58ZM72 12V27H90A7.5 7.5 0 0 0 90 12ZM72 45V60H92A7.5 7.5 0 0 0 92 45Z"/>
+      <path class="i-x1" fill="#1D4EDB" d="M160 0H178L136 72H118Z"/>
+      <path class="i-x2" fill="#2B6EFF" d="M116 0H134L176 72H158Z"/>
+    </svg>
+    <p class="intro__tag">Soluciones Financieras</p>
+  </div>
+</div>
+
+<header class="site-header" id="header">
   <div class="wrap header-inner">
     <a class="brand" href="#inicio" aria-label="BBX Soluciones Financieras, ir al inicio">
-      <span class="brand-mark">BBX</span>
+      <svg class="brand-logo" aria-hidden="true"><use href="#bbx-logo"></use></svg>
       <span class="brand-name">Soluciones<br>Financieras</span>
     </a>
     <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
@@ -24,6 +59,7 @@
       <a href="#servicios">Servicios</a>
       <a href="#cotizador">Cotizador</a>
       <a href="#proceso">Cómo funciona</a>
+      <a href="#inversores">Inversores</a>
       <a href="#preguntas">Preguntas</a>
       <a class="btn btn-small" href="#contacto">Cotizá tu cheque</a>
     </nav>
@@ -31,31 +67,40 @@
 </header>
 
 <main id="inicio">
-  <section class="hero">
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="beam beam--a"></span>
+      <span class="beam beam--b"></span>
+      <span class="hero__grid"></span>
+    </div>
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Compra y venta de cheques · ECHEQ</p>
-        <h1>Tu cheque a fecha, hoy en efectivo.</h1>
-        <p class="lead">En BBX compramos tus cheques de pago diferido y ECHEQ para que tengas liquidez sin esperar al vencimiento. Y si buscás invertir, te vendemos cheques seleccionados con tasa fija y plazo corto.</p>
-        <div class="hero-actions">
+        <p class="eyebrow rv-eyebrow">Compra y venta de cheques · ECHEQ</p>
+        <h1 class="hero-title">
+          <span class="ln"><span>Tu cheque a fecha,</span></span>
+          <span class="ln"><span>hoy en <em>efectivo.</em></span></span>
+        </h1>
+        <p class="lead rv-p">En BBX compramos tus cheques de pago diferido y ECHEQ para que tengas liquidez sin esperar al vencimiento. Y si buscás invertir, te vendemos cheques seleccionados con tasa fija y plazo corto.</p>
+        <div class="hero-actions rv-ctas">
           <a class="btn" href="#contacto">Cotizá tu cheque</a>
           <a class="btn btn-ghost" href="#inversores">Quiero invertir</a>
         </div>
-        <ul class="hero-points">
+        <ul class="hero-points rv-ctas">
           <li>Cotización en el día</li>
           <li>Cheques físicos y electrónicos</li>
-          <li>Pago por transferencia o en efectivo</li>
+          <li>Transferencia o efectivo</li>
         </ul>
       </div>
 
-      <!-- Cheque-shaped quote calculator -->
-      <aside class="cheque" id="cotizador" aria-labelledby="cot-title">
+      <!-- Cotizador con forma de cheque -->
+      <aside class="cheque rv-card" id="cotizador" aria-labelledby="cot-title">
         <div class="cheque-top">
-          <div>
-            <p class="cheque-bank">BBX · Cotizador</p>
+          <div class="cheque-head">
+            <p class="cheque-bank"><svg class="cheque-logo" aria-hidden="true"><use href="#bbx-logo"></use></svg> Cotizador</p>
             <h2 id="cot-title">¿Cuánto recibís por tu cheque?</h2>
           </div>
           <div class="mode" role="group" aria-label="Qué querés hacer">
+            <span class="mode__pill" aria-hidden="true"></span>
             <button type="button" class="mode-btn is-active" id="mode-vender" aria-pressed="true">Vender</button>
             <button type="button" class="mode-btn" id="mode-invertir" aria-pressed="false">Invertir</button>
           </div>
@@ -84,7 +129,7 @@
         <dl class="cheque-result">
           <div class="result-main">
             <dt id="lbl-neto">Recibís hoy</dt>
-            <dd id="out-neto">$0</dd>
+            <dd id="out-neto">$ 0</dd>
           </div>
           <div>
             <dt>Días al cobro</dt>
@@ -92,35 +137,40 @@
           </div>
           <div>
             <dt id="lbl-desc">Descuento</dt>
-            <dd id="out-desc">$0</dd>
+            <dd id="out-desc">$ 0</dd>
           </div>
         </dl>
         <p class="micr" aria-hidden="true">000123  285000  0007  4421</p>
         <p class="fine">Cálculo de referencia con descuento simple. La tasa final depende del librador, el plazo y el tipo de cheque. No incluye gastos ni impuestos.</p>
       </aside>
     </div>
+    <a class="hero__down" href="#servicios" aria-label="Bajar a servicios"><span></span></a>
   </section>
 
   <section class="section" id="servicios">
     <div class="wrap">
-      <header class="section-head">
+      <header class="section-head reveal">
         <p class="eyebrow">Servicios</p>
         <h2>Cheques, de los dos lados del mostrador</h2>
       </header>
-      <div class="services">
-        <article class="service">
+      <div class="services" data-stagger>
+        <article class="service reveal">
+          <span class="service__k">01 · Vendé</span>
           <h3>Compra de cheques</h3>
           <p>Adelantamos el cobro de tus cheques de pago diferido. Vos endosás, nosotros te pagamos hoy el importe menos el descuento acordado.</p>
         </article>
-        <article class="service">
+        <article class="service reveal">
+          <span class="service__k">02 · Vendé</span>
           <h3>ECHEQ</h3>
           <p>Operamos cheques electrónicos de cualquier banco. Nos endosás el ECHEQ desde tu home banking y recibís la transferencia en el día.</p>
         </article>
-        <article class="service">
+        <article class="service reveal">
+          <span class="service__k">03 · Invertí</span>
           <h3>Venta de cheques a inversores</h3>
           <p>Ofrecemos cheques analizados, de libradores con buen historial, para invertir a tasa fija con plazos desde 30 días.</p>
         </article>
-        <article class="service">
+        <article class="service reveal">
+          <span class="service__k">04 · Para todos</span>
           <h3>Análisis de librador</h3>
           <p>Antes de cada operación revisamos la situación del librador y del cheque, para que sepas con qué estás trabajando.</p>
         </article>
@@ -128,25 +178,31 @@
     </div>
   </section>
 
+  <section class="statement" aria-label="Nuestra propuesta">
+    <div class="wrap">
+      <p class="statement__text" data-words>La X de BBX es el cruce: quien necesita liquidez hoy y quien busca rendimiento mañana. Nosotros hacemos que el cheque pase de una mano a la otra, rápido y con números claros.</p>
+    </div>
+  </section>
+
   <section class="section section-alt" id="proceso">
     <div class="wrap">
-      <header class="section-head">
+      <header class="section-head reveal">
         <p class="eyebrow">Cómo funciona</p>
         <h2>Vendé tu cheque en tres pasos</h2>
       </header>
-      <ol class="steps">
-        <li>
-          <span class="step-n">1</span>
+      <ol class="steps" data-stagger>
+        <li class="reveal">
+          <span class="step-n">Paso 1</span>
           <h3>Enviá los datos</h3>
           <p>Mandanos por WhatsApp una foto del cheque (frente y dorso) o los datos del ECHEQ: importe, fecha de pago, banco y librador.</p>
         </li>
-        <li>
-          <span class="step-n">2</span>
+        <li class="reveal">
+          <span class="step-n">Paso 2</span>
           <h3>Recibí la cotización</h3>
           <p>Analizamos el cheque y te pasamos en el día cuánto recibís, con la tasa y el descuento detallados.</p>
         </li>
-        <li>
-          <span class="step-n">3</span>
+        <li class="reveal">
+          <span class="step-n">Paso 3</span>
           <h3>Cobrá</h3>
           <p>Endosás el cheque o el ECHEQ y te transferimos el dinero a tu cuenta, o lo retirás en efectivo.</p>
         </li>
@@ -156,60 +212,60 @@
 
   <section class="section" id="inversores">
     <div class="wrap why">
-      <div class="why-copy">
+      <div class="why-copy reveal">
         <p class="eyebrow">Para inversores</p>
         <h2>Invertí en cheques con tasa fija y plazo corto</h2>
         <p>Comprás un cheque por menos de su valor y cobrás el importe completo al vencimiento. La diferencia es tu rendimiento, conocido desde el primer día.</p>
         <a class="btn" href="#contacto" data-servicio="Invertir en cheques">Consultá cheques disponibles</a>
       </div>
-      <ul class="why-list">
-        <li><strong>Rendimiento conocido.</strong> Sabés cuánto vas a cobrar y cuándo.</li>
-        <li><strong>Plazos cortos.</strong> Cheques de 30 a 180 días para no inmovilizar tu capital.</li>
-        <li><strong>Libradores analizados.</strong> Seleccionamos cheques según historial y situación crediticia.</li>
-        <li><strong>Diversificación.</strong> Podés repartir tu inversión entre varios cheques y libradores.</li>
+      <ul class="why-list" data-stagger>
+        <li class="reveal"><strong>Rendimiento conocido.</strong> Sabés cuánto vas a cobrar y cuándo.</li>
+        <li class="reveal"><strong>Plazos cortos.</strong> Cheques de 30 a 180 días para no inmovilizar tu capital.</li>
+        <li class="reveal"><strong>Libradores analizados.</strong> Seleccionamos cheques según historial y situación crediticia.</li>
+        <li class="reveal"><strong>Diversificación.</strong> Podés repartir tu inversión entre varios cheques y libradores.</li>
       </ul>
     </div>
   </section>
 
   <section class="section section-alt" id="requisitos">
     <div class="wrap">
-      <header class="section-head">
+      <header class="section-head reveal">
         <p class="eyebrow">Requisitos</p>
         <h2>Qué necesitás para operar</h2>
       </header>
-      <ul class="reqs">
-        <li><strong>DNI y CUIT/CUIL</strong> del titular o de la empresa.</li>
-        <li><strong>El cheque o ECHEQ</strong> a tu nombre o endosado a tu favor.</li>
-        <li><strong>Datos bancarios</strong> (CBU o alias) si querés cobrar por transferencia.</li>
-        <li><strong>Para empresas:</strong> estatuto y poder del firmante.</li>
+      <ul class="reqs" data-stagger>
+        <li class="reveal"><strong>DNI y CUIT/CUIL</strong> del titular o de la empresa.</li>
+        <li class="reveal"><strong>El cheque o ECHEQ</strong> a tu nombre o endosado a tu favor.</li>
+        <li class="reveal"><strong>Datos bancarios</strong> (CBU o alias) si querés cobrar por transferencia.</li>
+        <li class="reveal"><strong>Para empresas:</strong> estatuto y poder del firmante.</li>
       </ul>
     </div>
   </section>
 
   <section class="section" id="preguntas">
     <div class="wrap narrow">
-      <header class="section-head">
+      <header class="section-head reveal">
         <p class="eyebrow">Preguntas frecuentes</p>
         <h2>Lo que más nos preguntan</h2>
       </header>
-      <div class="faq">
-        <details>
+      <div class="faq" data-stagger>
+        <details class="reveal">
           <summary>¿Qué significa descontar un cheque?</summary>
           <p>Es cambiar un cheque de pago diferido por dinero hoy. Recibís el importe del cheque menos un descuento que depende de la tasa y de los días que faltan para su cobro.</p>
         </details>
-        <details>
+        <details class="reveal">
           <summary>¿Qué cheques compran?</summary>
           <p>Cheques de pago diferido físicos y ECHEQ de bancos argentinos. Cada operación se evalúa según el librador, el monto y el plazo.</p>
         </details>
-        <details>
+        <details class="reveal">
           <summary>¿Cuánto tarda la operación?</summary>
           <p>La cotización sale en el día. Una vez endosado el cheque, el pago suele acreditarse dentro de las 24 horas hábiles.</p>
         </details>
-        <details>
+        <details class="reveal">
           <summary>¿Cómo endoso un ECHEQ?</summary>
           <p>Desde tu home banking, en la sección ECHEQ, elegís el cheque, la opción Endosar e ingresás el CUIT que te indicamos. Te guiamos paso a paso.</p>
         </details>
-        <details>
+        <details class="reveal">
           <summary>¿El resultado del cotizador es una oferta firme?</summary>
           <p>No. Es una referencia. La cotización final la confirmamos después de analizar el cheque y el librador.</p>
         </details>
@@ -219,7 +275,7 @@
 
   <section class="section contact" id="contacto">
     <div class="wrap contact-grid">
-      <div class="contact-copy">
+      <div class="contact-copy reveal">
         <p class="eyebrow">Contacto</p>
         <h2>Cotizá tu cheque</h2>
         <p>Completá los datos y te respondemos por WhatsApp con la cotización.</p>
@@ -239,7 +295,7 @@
         </dl>
       </div>
 
-      <form class="contact-form" id="contact-form" novalidate>
+      <form class="contact-form reveal" id="contact-form" novalidate>
         <div class="field">
           <label for="c-servicio">Quiero</label>
           <select id="c-servicio" name="servicio">
@@ -283,7 +339,10 @@
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <p class="brand-foot"><span class="brand-mark">BBX</span> Soluciones Financieras</p>
+    <p class="brand-foot">
+      <svg class="brand-logo" aria-hidden="true"><use href="#bbx-logo"></use></svg>
+      <span>Soluciones Financieras</span>
+    </p>
     <p class="fine">Las tasas y valores publicados son de referencia y no constituyen una oferta. Toda operación está sujeta al análisis del cheque y del librador.</p>
     <p class="fine">© <span id="year">2026</span> BBX Soluciones Financieras.</p>
   </div>
