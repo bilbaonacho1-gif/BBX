@@ -8,8 +8,8 @@ Es un sitio estático (HTML, CSS y JavaScript, sin dependencias ni compilación)
 
 ```
 index.html          Página principal (el logo está vectorizado adentro, en el bloque "sprite")
-css/styles.css      Estilos y animaciones (colores al principio: tema oscuro y modo claro)
-js/main.js          Idioma ES/EN, tema, apertura, carrusel, apariciones, cotizador y formulario
+css/styles.css      Estilos y animaciones (colores al principio, en :root)
+js/main.js          Idioma ES/EN, apertura, apariciones, cotizador y formulario a WhatsApp
 img/ciudad.jpg      Fondo: ciudad de noche desde una oficina (portada y Nosotros)
 img/echeq.jpg       Fondo: red digital (portada, ECHEQ)
 img/cheque.jpg      Fondo: cheque sobre un escritorio (portada y Por qué nosotros)
@@ -21,30 +21,29 @@ img/favicon.svg     Ícono de la pestaña (la X)
 Los fondos son ilustraciones generadas para el sitio. Para usar fotos propias, reemplazá
 los archivos de `img/` por otros con el mismo nombre (ideal 1920 × 1080, JPG).
 
-## Colores, tema e idioma
+## Colores e idioma
 
-- Paleta de marca: #0A0F1A, #0F1E36, #1E5BFF, #F2F4F8 y #6B7280. Tema oscuro por defecto y botón
-  para modo claro (sol/luna en el encabezado). La portada, las tarjetas con foto y el teléfono quedan
-  siempre oscuros.
+- Paleta azul petróleo + negro + blanco (#071A24, #0E3442, #1C6070, #D9E0E2, #FFFFFF).
+  El logo conserva su azul. La sección de Servicios es clara; el resto, oscuro.
 - Idioma español/inglés con el selector ES ▾. El español está en `index.html` y el inglés en el
   diccionario `EN` al principio de `js/main.js`: cada texto tiene una clave `data-i18n`.
-- El sitio recuerda el tema y el idioma elegidos.
+- El sitio recuerda el idioma elegido.
 
 ## Datos que se pueden cambiar
 
-- `js/main.js` → `CONFIG.whatsapp` (número al que llega el formulario) y `CONFIG.slideMs`
-  (tiempo de cada diapositiva del carrusel).
+- `js/main.js` → `CONFIG.whatsapp` (número al que llega el formulario).
 - `index.html` → textos, correo, teléfono y horario.
 - `index.html` → tasa mensual de ejemplo del cotizador (`cot-tasa`, por defecto 3,5 %).
 
 ## Animaciones
 
 - Apertura: el logo se arma pieza por pieza y la pantalla se abre en diagonal, como la X.
-  Se ve una vez por visita. Tocar la pantalla o una tecla la saltea.
-- Portada: carrusel de 3 diapositivas con zoom lento de fondo, títulos que suben línea por línea
-  y barras de progreso. Se pausa con el mouse encima y se puede deslizar con el dedo.
+  Se ve cada vez que se carga la página. Tocar la pantalla o una tecla la saltea.
+- Portada: zoom lento de fondo, título que sube línea por línea y datos que cuentan desde cero.
 - Al bajar: los bloques aparecen con desenfoque, las imágenes se descubren en diagonal y se mueven
   con parallax, los íconos se dibujan, los números cuentan y una frase se enciende palabra por palabra.
+- En el celular las tarjetas de Servicios se deslizan de costado y el botón de WhatsApp aparece
+  después de la portada.
 - Servicios: tarjetas grandes con foto y panel de vidrio que se inclinan en 3D siguiendo el mouse,
   con un brillo que acompaña al cursor y la flecha que se ilumina. Toda la tarjeta es clickeable.
 - Cómo funciona: demo con un teléfono que muestra cada paso (mensaje con el cheque, cotización y

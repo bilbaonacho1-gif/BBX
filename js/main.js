@@ -1,7 +1,6 @@
 // BBX Soluciones Financieras SA — sin librerías.
 const CONFIG = {
   whatsapp: "5491157502360", // +54 9 11 5750-2360
-  slideMs: 7000,             // tiempo de cada diapositiva del carrusel
 };
 
 const $ = (id) => document.getElementById(id);
@@ -156,13 +155,11 @@ const EN = {
   "t130": "Ask about an ECHEQ",
   "t131": "See how it works",
   "t132": "Due date, bank, drawer…",
-  "themeToLight": "Switch to light mode",
-  "themeToDark": "Switch to dark mode",
   "langLabel": "Language: English"
 };
 const STR = {
-  es: { formError: "Completá tu nombre y teléfono para que podamos responderte.", hello: "Hola BBX, quiero:", name: "Nombre", phone: "Teléfono", amount: "Importe", dueDate: "Fecha de cobro", themeToLight: "Activar modo claro", themeToDark: "Activar modo oscuro", langLabel: "Idioma: español" },
-  en: { formError: "Please enter your name and phone so we can get back to you.", hello: "Hi BBX, I want to:", name: "Name", phone: "Phone", amount: "Amount", dueDate: "Due date", themeToLight: EN.themeToLight, themeToDark: EN.themeToDark, langLabel: EN.langLabel },
+  es: { formError: "Completá tu nombre y teléfono para que podamos responderte.", hello: "Hola BBX, quiero:", name: "Nombre", phone: "Teléfono", amount: "Importe", dueDate: "Fecha de cobro", langLabel: "Idioma: español" },
+  en: { formError: "Please enter your name and phone so we can get back to you.", hello: "Hi BBX, I want to:", name: "Name", phone: "Phone", amount: "Amount", dueDate: "Due date", langLabel: EN.langLabel },
 };
 const i18nEls = $$("[data-i18n]").map((el) => ({ el, key: el.dataset.i18n, es: el.innerHTML }));
 const i18nAttrs = $$("[data-i18n-attr]").flatMap((el) => el.dataset.i18nAttr.split(";").map((pair) => {
@@ -177,36 +174,18 @@ function applyLang(next) {
   root.lang = next;
   i18nEls.forEach(({ el, key, es }) => { el.innerHTML = next === "en" && EN[key] ? EN[key] : es; });
   i18nAttrs.forEach(({ el, attr, key, es }) => {
-    if (key === "themeToLight" || key === "langLabel") return;
+    if (key === "langLabel") return;
     el.setAttribute(attr, next === "en" && EN[key] ? EN[key] : es);
   });
   $("lang-current").textContent = next.toUpperCase();
   $("lang-btn").setAttribute("aria-label", t("langLabel"));
   $$(".lang-menu [data-lang]").forEach((b) => b.setAttribute("aria-current", String(b.dataset.lang === next)));
-  updateThemeLabel();
   wrapPhrase();
   if (!calm) requestFrame();
   $("year").textContent = new Date().getFullYear();
   try { localStorage.setItem("bbx-lang", next); } catch (e) {}
 }
 
-const themeBtn = $("theme-btn");
-const isLight = () => root.getAttribute("data-bbx-theme") === "light";
-function updateThemeLabel() {
-  themeBtn.setAttribute("aria-pressed", String(isLight()));
-  themeBtn.setAttribute("aria-label", isLight() ? t("themeToDark") : t("themeToLight"));
-}
-function applyTheme(light) {
-  root.classList.add("theme-anim");
-  if (light) root.setAttribute("data-bbx-theme", "light");
-  else root.removeAttribute("data-bbx-theme");
-  const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.content = light ? "#F2F4F8" : "#0A0F1A";
-  updateThemeLabel();
-  try { localStorage.setItem("bbx-theme", light ? "light" : "dark"); } catch (e) {}
-  setTimeout(() => root.classList.remove("theme-anim"), 700);
-}
-themeBtn.addEventListener("click", () => applyTheme(!isLight()));
 
 const langBtn = $("lang-btn");
 const langMenu = $("lang-menu");
@@ -237,99 +216,14 @@ function showHero() {
   waFloat.classList.add("is-in");
   hero.classList.add("is-revealed");
   countUp();
-  carousel.start();
 }
 
 function openIntro() {
   if (!intro || intro.classList.contains("is-open")) return;
   intro.classList.add("is-open");
-  try { sessionStorage.setItem("bbx-intro", "1"); } catch (e) {}
   setTimeout(showHero, 200);
   setTimeout(() => intro.remove(), 1400);
 }
-
-/* =========================================================
-   2) Carrusel de la portada
-   ========================================================= */
-const carousel = (() => {
-  const slides = $$(".slide", hero);
-  const dots = $$(".dot", hero);
-  let cur = 0, t0 = 0, elapsed = 0, paused = false, running = false, raf = 0;
-
-  function go(i) {
-    const next = (i + slides.length) % slides.length;
-    if (next === cur) return;
-    slides[cur].classList.remove("is-active");
-    dots[cur].classList.remove("is-active");
-    dots[cur].setAttribute("aria-selected", "false");
-    dots[cur].style.setProperty("--p", 0);
-    cur = next;
-    // las imágenes diferidas se cargan antes de mostrarse
-    const img = slides[cur].querySelector("img");
-    if (img) img.loading = "eager";
-    slides[cur].classList.add("is-active");
-    dots[cur].classList.add("is-active");
-    dots[cur].setAttribute("aria-selected", "true");
-    elapsed = 0;
-    t0 = performance.now();
-  }
-
-  function tick(now) {
-    if (!paused) {
-      const p = clamp((elapsed + now - t0) / CONFIG.slideMs);
-      dots[cur].style.setProperty("--p", p.toFixed(4));
-      if (p >= 1) go(cur + 1);
-    }
-    raf = requestAnimationFrame(tick);
-  }
-
-  function pause() {
-    if (paused) return;
-    paused = true;
-    elapsed += performance.now() - t0;
-  }
-  function resume() {
-    if (!paused) return;
-    paused = false;
-    t0 = performance.now();
-  }
-
-  dots.forEach((d, i) => d.addEventListener("click", () => go(i)));
-  $("prev").addEventListener("click", () => go(cur - 1));
-  $("next").addEventListener("click", () => go(cur + 1));
-
-  // se pausa mientras el mouse o el foco están sobre el contenido
-  $$(".slide__content, .hero__ui", hero).forEach((el) => {
-    el.addEventListener("pointerenter", pause);
-    el.addEventListener("pointerleave", resume);
-    el.addEventListener("focusin", pause);
-    el.addEventListener("focusout", resume);
-  });
-  document.addEventListener("visibilitychange", () => (document.hidden ? pause() : resume()));
-
-  // deslizar con el dedo
-  let x0 = null;
-  hero.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") x0 = e.clientX; });
-  hero.addEventListener("pointerup", (e) => {
-    if (x0 === null) return;
-    const dx = e.clientX - x0;
-    x0 = null;
-    if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1));
-  });
-  hero.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") go(cur + 1);
-    if (e.key === "ArrowLeft") go(cur - 1);
-  });
-
-  return {
-    start() {
-      if (running || calm) return;
-      running = true;
-      t0 = performance.now();
-      raf = requestAnimationFrame(tick);
-    },
-  };
-})();
 
 /* Contadores de la franja de datos */
 function countUp() {
@@ -443,6 +337,8 @@ function onScroll() {
   ticking = false;
   const y = scrollY, H = innerHeight;
   header.classList.toggle("is-solid", y > 40 || nav.classList.contains("is-open"));
+  // el botón de WhatsApp aparece cuando se deja atrás la portada
+  waFloat.classList.toggle("is-hidden", y < hero.offsetHeight * 0.6);
 
   if (!calm) {
     parallax.forEach((img) => {
@@ -749,5 +645,4 @@ $$(".qcard[data-faq]").forEach((card) => card.addEventListener("click", () => {
 }));
 
 $("year").textContent = new Date().getFullYear();
-updateThemeLabel();
 if (lang === "en") applyLang("en");
