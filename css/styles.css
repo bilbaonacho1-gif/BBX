@@ -667,7 +667,15 @@ a { color: var(--accent-2); }
 .qcard:focus-visible { outline: 2px solid var(--c); outline-offset: -2px; }
 .qcard__label { grid-area: label; display: flex; gap: 8px; align-items: baseline; font: 500 0.6875rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); }
 .qcard__label b { color: var(--c-text); font-weight: 600; }
-.qcard__q { grid-area: q; font-family: var(--font-display); font-size: 1.1875rem; font-weight: 500; line-height: 1.25; letter-spacing: -0.015em; color: var(--fg); text-wrap: balance; }
+.qcard__q { grid-area: q; min-height: 3rem; font-family: var(--font-display); font-size: 1.1875rem; font-weight: 500; line-height: 1.5rem; letter-spacing: -0.015em; color: var(--fg); text-wrap: balance; }
+.qcard__label { min-height: 1rem; }
+@media (max-width: 1180px) {
+  .qcard__q { font-size: 1.0625rem; line-height: 1.375rem; min-height: 2.75rem; }
+  .disc { column-gap: 18px; }
+  .disc__col:not(:last-child)::after { display: none; }
+  .qcard { padding: 16px; gap: 8px 12px; }
+}
+/* todas las tarjetas con la misma altura: la pregunta reserva siempre dos líneas */
 .qcard__go { grid-area: go; position: relative; width: 34px; height: 34px; border-radius: 50%; background: var(--c); transition: transform 0.4s var(--ease); }
 .qcard__go::before { content: ""; position: absolute; left: 10px; top: 50%; width: 12px; height: 1.6px; background: #071A24; }
 .qcard__go::after { content: ""; position: absolute; left: 15px; top: 50%; width: 6px; height: 6px; border-top: 1.6px solid #071A24; border-right: 1.6px solid #071A24; transform: translateY(-50%) rotate(45deg); }
@@ -1095,7 +1103,6 @@ select option { background: var(--surface); }
   .disc__head h3 { font-size: 1.6rem; }
   .disc__col:not(:last-child)::after { display: none; }
   .disc { row-gap: 28px; }
-  .qcard__q { font-size: 1.0625rem; }
   /* demo y decoración */
   .phone { height: 480px; }
   .floaters { display: none; }
