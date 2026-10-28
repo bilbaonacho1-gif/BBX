@@ -36,6 +36,12 @@ los archivos de `img/` por otros con el mismo nombre (ideal 1920 × 1080, JPG).
   y barras de progreso. Se pausa con el mouse encima y se puede deslizar con el dedo.
 - Al bajar: los bloques aparecen con desenfoque, las imágenes se descubren en diagonal y se mueven
   con parallax, los íconos se dibujan, los números cuentan y una frase se enciende palabra por palabra.
+- Servicios: tarjetas grandes con foto y panel de vidrio que se inclinan en 3D siguiendo el mouse,
+  con un brillo que acompaña al cursor y la flecha que se ilumina. Toda la tarjeta es clickeable.
+- Cómo funciona: demo con un teléfono que muestra cada paso (mensaje con el cheque, cotización y
+  transferencia recibida). Avanza sola mientras se ve y se puede elegir cada paso.
+- X flotantes del logo en el fondo de varias secciones, que se mueven con el mouse y el scroll.
+- El fondo de la portada acompaña un poco el movimiento del mouse.
 - Con "reducir movimiento" activado en el dispositivo no se anima nada.
 
 ## Ver el sitio localmente

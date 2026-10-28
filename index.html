@@ -55,6 +55,11 @@
     </g>
     <path fill="#fff" d="M918.6 665.7L1044 809H976L884 703.9Z"/>
   </symbol>
+  <symbol id="bbx-x" viewBox="735 481 312 329">
+    <path fill="currentColor" opacity=".55" d="M790 558H813L897.5 641.6L863 679.8L793 600Z"/>
+    <path fill="currentColor" d="M976 481H1043L808 740H741Z"/>
+    <path fill="currentColor" opacity=".8" d="M918.6 665.7L1044 809H976L884 703.9Z"/>
+  </symbol>
 </svg>
 
 <!-- Apertura: primero el logo solo, después se abre en diagonal como la X -->
@@ -173,43 +178,77 @@
     </figure>
   </section>
 
-  <!-- ===== 02 Servicios (sección clara) ===== -->
+  <!-- ===== 02 Servicios (sección clara, tarjetas interactivas) ===== -->
   <section class="services" id="servicios">
-    <div class="wrap services__grid">
-      <div class="numbered reveal">
-        <span class="num">02</span>
-        <p class="eyebrow">Servicios</p>
-        <h2>Liquidez hoy para tus cheques a fecha.</h2>
-        <p>Te compramos el cheque de pago diferido o el ECHEQ y te pagamos hoy, con la cotización detallada antes de operar.</p>
-        <a class="link-more" href="#proceso">Cómo funciona <i class="circ" aria-hidden="true"></i></a>
+    <div class="wrap">
+      <div class="services__head">
+        <div class="numbered reveal">
+          <span class="num">02</span>
+          <p class="eyebrow">Servicios</p>
+          <h2>Liquidez hoy para tus cheques a fecha.</h2>
+          <p>Te compramos el cheque de pago diferido o el ECHEQ y te pagamos hoy, con la cotización detallada antes de operar.</p>
+        </div>
+        <ul class="chips reveal" aria-label="Incluido en cada operación">
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M8 10.5l2 2 3-3.5"/></svg>Análisis de librador</li>
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg>Ayuda con el endoso</li>
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h15l-3.5-3.5M21 16H6l3.5 3.5"/></svg>Transferencia o efectivo</li>
+        </ul>
       </div>
-      <ul class="cards" data-stagger>
-        <li class="card reveal">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h7M6 14h4M15 14h3"/></svg>
-          <div><h3>Compra de cheques</h3><p>Cheques de pago diferido, cobrados hoy.</p></div>
-        </li>
-        <li class="card reveal">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M9 12h6M13 10l2 2-2 2"/></svg>
-          <div><h3>ECHEQ</h3><p>Cheques electrónicos de cualquier banco.</p></div>
-        </li>
-        <li class="card reveal">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg>
-          <div><h3>Ayuda con el endoso</h3><p>Te guiamos paso a paso, en papel o desde tu home banking.</p></div>
-        </li>
-        <li class="card reveal">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M8 10.5l2 2 3-3.5"/></svg>
-          <div><h3>Análisis de librador</h3><p>Revisamos cada cheque antes de operar.</p></div>
-        </li>
-        <li class="card card--wide reveal">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h15l-3.5-3.5M21 16H6l3.5 3.5"/></svg>
-          <div><h3>Pago por transferencia o en efectivo</h3><p>Elegís cómo cobrar. Acreditamos dentro de las 24 h hábiles.</p></div>
-        </li>
-      </ul>
+
+      <div class="xcards" data-stagger>
+        <article class="xcard reveal">
+          <div class="xcard__tilt">
+            <img class="xcard__img" src="img/cheque.jpg" alt="" width="1920" height="1080" loading="lazy">
+            <div class="xcard__glass">
+              <div class="xcard__top">
+                <span class="xcard__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h7M6 14h4M15 14h3"/></svg></span>
+                <h3>Cheques físicos</h3>
+                <a class="xcard__go" href="#cotizador" aria-label="Cotizar un cheque físico"><i class="arr" aria-hidden="true"></i></a>
+              </div>
+              <p>Cheques de pago diferido de cualquier banco. Endosás y cobrás hoy, por transferencia o en efectivo.</p>
+            </div>
+            <span class="xcard__glare" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="xcard reveal">
+          <div class="xcard__tilt">
+            <img class="xcard__img" src="img/echeq.jpg" alt="" width="1920" height="1080" loading="lazy">
+            <div class="xcard__glass">
+              <div class="xcard__top">
+                <span class="xcard__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M9 12h6M13 10l2 2-2 2"/></svg></span>
+                <h3>ECHEQ</h3>
+                <a class="xcard__go" href="#contacto" data-servicio="Vender un ECHEQ" aria-label="Consultar por un ECHEQ"><i class="arr" aria-hidden="true"></i></a>
+              </div>
+              <p>Cheques electrónicos de cualquier banco. Nos endosás desde tu home banking y recibís la transferencia en el día.</p>
+            </div>
+            <span class="xcard__glare" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="xcard reveal">
+          <div class="xcard__tilt">
+            <img class="xcard__img" src="img/ciudad.jpg" alt="" width="1920" height="1080" loading="lazy">
+            <div class="xcard__glass">
+              <div class="xcard__top">
+                <span class="xcard__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+                <h3>Cotización clara</h3>
+                <a class="xcard__go" href="#proceso" aria-label="Ver cómo funciona"><i class="arr" aria-hidden="true"></i></a>
+              </div>
+              <p>Importe, tasa, días y descuento por escrito, después de analizar el cheque y el librador.</p>
+            </div>
+            <span class="xcard__glare" aria-hidden="true"></span>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
   <!-- ===== Cotizador ===== -->
   <section class="quote" id="cotizador">
+    <div class="floaters" aria-hidden="true">
+      <span class="fx" style="--x:4%;--y:12%;--s:70px;--d:.8;--r:-20deg;--t:10s"><svg><use href="#bbx-x"></use></svg></span>
+      <span class="fx" style="--x:46%;--y:86%;--s:44px;--d:.5;--r:25deg;--t:8s"><svg><use href="#bbx-x"></use></svg></span>
+      <span class="fx" style="--x:94%;--y:20%;--s:56px;--d:1.2;--r:8deg;--t:12s"><svg><use href="#bbx-x"></use></svg></span>
+    </div>
     <div class="quote__bg" aria-hidden="true"><img src="img/guilloche.jpg" alt="" width="1920" height="1080" loading="lazy" data-parallax="0.08"></div>
     <div class="wrap quote__grid">
       <div class="quote__copy reveal">
@@ -310,35 +349,85 @@
   </section>
 
   <section class="statement" aria-label="Nuestra propuesta">
+    <div class="floaters" aria-hidden="true">
+      <span class="fx" style="--x:82%;--y:24%;--s:120px;--d:1;--r:-8deg;--t:12s"><svg><use href="#bbx-x"></use></svg></span>
+      <span class="fx" style="--x:70%;--y:74%;--s:60px;--d:.5;--r:22deg;--t:9s"><svg><use href="#bbx-x"></use></svg></span>
+      <span class="fx" style="--x:93%;--y:58%;--s:40px;--d:1.4;--r:-30deg;--t:7s"><svg><use href="#bbx-x"></use></svg></span>
+    </div>
     <div class="wrap">
       <p class="statement__text" data-words>La X de BBX es el cruce entre el cheque que cobrás mañana y el efectivo que tu empresa necesita hoy. Nosotros lo hacemos posible, rápido y con números claros.</p>
     </div>
   </section>
 
-  <!-- ===== Cómo funciona ===== -->
+  <!-- ===== Cómo funciona (demo interactiva) ===== -->
   <section class="process" id="proceso">
+    <div class="floaters" aria-hidden="true">
+      <span class="fx" style="--x:6%;--y:18%;--s:54px;--d:.6;--r:-12deg;--t:9s"><svg><use href="#bbx-x"></use></svg></span>
+      <span class="fx" style="--x:92%;--y:70%;--s:84px;--d:1;--r:18deg;--t:11s"><svg><use href="#bbx-x"></use></svg></span>
+    </div>
     <div class="wrap">
-      <header class="section-head reveal">
-        <p class="eyebrow">Cómo funciona</p>
-        <h2>Vendé tu cheque en tres pasos</h2>
-      </header>
-      <ol class="steps" data-stagger>
-        <li class="reveal">
-          <span class="step-n">1</span>
-          <h3>Enviá los datos</h3>
-          <p>Mandanos por WhatsApp una foto del cheque (frente y dorso) o los datos del ECHEQ: importe, fecha de pago, banco y librador.</p>
-        </li>
-        <li class="reveal">
-          <span class="step-n">2</span>
-          <h3>Recibí la cotización</h3>
-          <p>Analizamos el cheque y te pasamos en el día cuánto recibís, con la tasa y el descuento detallados.</p>
-        </li>
-        <li class="reveal">
-          <span class="step-n">3</span>
-          <h3>Cobrá</h3>
-          <p>Endosás el cheque o el ECHEQ y te transferimos el dinero a tu cuenta, o lo retirás en efectivo.</p>
-        </li>
-      </ol>
+      <div class="demo">
+        <div class="demo__side">
+        <header class="section-head reveal">
+          <p class="eyebrow">Cómo funciona</p>
+          <h2>Vendé tu cheque en tres pasos</h2>
+        </header>
+        <ol class="demo__steps reveal" role="tablist" aria-label="Pasos">
+          <li><button class="demo__step is-active" type="button" role="tab" aria-selected="true" aria-controls="screen-1" id="step-1">
+            <span class="step-n">1</span>
+            <span class="demo__txt"><strong>Enviá los datos</strong><span>Mandanos por WhatsApp una foto del cheque (frente y dorso) o los datos del ECHEQ: importe, fecha de pago, banco y librador.</span></span>
+            <span class="demo__bar"><i></i></span>
+          </button></li>
+          <li><button class="demo__step" type="button" role="tab" aria-selected="false" aria-controls="screen-2" id="step-2">
+            <span class="step-n">2</span>
+            <span class="demo__txt"><strong>Recibí la cotización</strong><span>Analizamos el cheque y te pasamos en el día cuánto recibís, con la tasa y el descuento detallados.</span></span>
+            <span class="demo__bar"><i></i></span>
+          </button></li>
+          <li><button class="demo__step" type="button" role="tab" aria-selected="false" aria-controls="screen-3" id="step-3">
+            <span class="step-n">3</span>
+            <span class="demo__txt"><strong>Cobrá</strong><span>Endosás el cheque o el ECHEQ y te transferimos el dinero a tu cuenta, o lo retirás en efectivo.</span></span>
+            <span class="demo__bar"><i></i></span>
+          </button></li>
+        </ol>
+        </div>
+
+        <div class="phone reveal" aria-live="polite">
+          <div class="phone__notch"></div>
+          <div class="phone__bar"><svg class="phone__logo" aria-hidden="true"><use href="#bbx-logo"></use></svg><span>BBX Soluciones Financieras<small>en línea</small></span></div>
+          <div class="phone__screens">
+            <div class="screen is-active" id="screen-1" role="tabpanel" aria-labelledby="step-1">
+              <div class="bubble bubble--me">
+                <div class="mini-cheque" aria-hidden="true"><b>BANCO</b><i></i><i></i><i></i><em>$ 1.000.000,00</em></div>
+                <p>Hola, quiero vender este cheque. Vence en 60 días.</p>
+                <time>10:24 ✓✓</time>
+              </div>
+              <div class="bubble bubble--typing" aria-label="BBX está escribiendo"><span></span><span></span><span></span></div>
+            </div>
+            <div class="screen" id="screen-2" role="tabpanel" aria-labelledby="step-2" hidden>
+              <div class="bubble bubble--them">
+                <p class="q-title">Cotización · Ejemplo</p>
+                <dl class="q-rows">
+                  <div><dt>Importe</dt><dd>$ 1.000.000</dd></div>
+                  <div><dt>Días al cobro</dt><dd>60</dd></div>
+                  <div><dt>Tasa mensual</dt><dd>3,5 %</dd></div>
+                  <div><dt>Descuento</dt><dd>$ 70.000</dd></div>
+                  <div class="q-total"><dt>Recibís</dt><dd>$ 930.000</dd></div>
+                </dl>
+                <time>10:41</time>
+              </div>
+              <div class="bubble bubble--me"><p>¡Perfecto, avancemos!</p><time>10:43 ✓✓</time></div>
+            </div>
+            <div class="screen" id="screen-3" role="tabpanel" aria-labelledby="step-3" hidden>
+              <div class="notif">
+                <span class="notif__check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9"/></svg></span>
+                <p><strong>Transferencia recibida</strong><span>$ 930.000 acreditados en tu cuenta</span></p>
+              </div>
+              <div class="bubble bubble--them"><p>Listo, el pago ya está en tu cuenta. ¡Gracias por elegirnos!</p><time>11:58</time></div>
+            </div>
+          </div>
+          <p class="phone__note">Valores de ejemplo, como en el cotizador.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -381,6 +470,10 @@
 
   <!-- ===== 04 Contacto ===== -->
   <section class="contact" id="contacto">
+    <div class="floaters" aria-hidden="true">
+      <span class="fx" style="--x:48%;--y:14%;--s:50px;--d:.7;--r:14deg;--t:10s"><svg><use href="#bbx-x"></use></svg></span>
+      <span class="fx" style="--x:6%;--y:82%;--s:80px;--d:1.1;--r:-16deg;--t:12s"><svg><use href="#bbx-x"></use></svg></span>
+    </div>
     <div class="wrap contact-grid">
       <div class="numbered reveal">
         <span class="num">04</span>

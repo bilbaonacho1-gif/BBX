@@ -262,6 +262,116 @@ addEventListener("resize", requestFrame);
 onScroll();
 
 /* =========================================================
+   6b) Interacción: tarjetas con inclinación 3D, X flotantes,
+       portada que sigue al mouse y demo de "Cómo funciona"
+   ========================================================= */
+const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+// Tarjetas: toda la tarjeta lleva al enlace de su flecha
+$$(".xcard").forEach((card) => {
+  const link = card.querySelector(".xcard__go");
+  card.addEventListener("click", (e) => { if (!e.target.closest("a")) link.click(); });
+  if (calm || !finePointer) return;
+  const tilt = card.querySelector(".xcard__tilt");
+  card.addEventListener("pointermove", (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    card.classList.add("is-tilting");
+    tilt.style.setProperty("--ry", `${((x - 0.5) * 12).toFixed(2)}deg`);
+    tilt.style.setProperty("--rx", `${((0.5 - y) * 10).toFixed(2)}deg`);
+    tilt.style.setProperty("--mx", `${(x * 100).toFixed(1)}%`);
+    tilt.style.setProperty("--my", `${(y * 100).toFixed(1)}%`);
+  });
+  card.addEventListener("pointerleave", () => {
+    card.classList.remove("is-tilting");
+    tilt.style.setProperty("--rx", "0deg");
+    tilt.style.setProperty("--ry", "0deg");
+  });
+});
+
+// X flotantes y fondo de la portada: se mueven un poco con el mouse
+if (!calm && finePointer) {
+  const groups = $$(".floaters");
+  const heroBgs = $$(".slide__bg", hero);
+  let mx = 0, my = 0, pending = false;
+  addEventListener("pointermove", (e) => {
+    mx = e.clientX / innerWidth - 0.5;
+    my = e.clientY / innerHeight - 0.5;
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(() => {
+      pending = false;
+      groups.forEach((g) => { g.style.setProperty("--px", mx.toFixed(3)); g.style.setProperty("--py", my.toFixed(3)); });
+      if (scrollY < innerHeight) heroBgs.forEach((b) => { b.style.transform = `translate3d(${(-mx * 18).toFixed(1)}px, ${(-my * 12).toFixed(1)}px, 0)`; });
+    });
+  }, { passive: true });
+}
+// y con el scroll (cada una a su velocidad, según --d)
+if (!calm) {
+  const groups = $$(".floaters");
+  const syncFloaters = () => groups.forEach((g) => {
+    const r = g.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    g.style.setProperty("--sy", ((r.top + r.height / 2 - innerHeight / 2) * 0.25).toFixed(1));
+  });
+  addEventListener("scroll", () => requestAnimationFrame(syncFloaters), { passive: true });
+  syncFloaters();
+}
+
+// Demo "Cómo funciona": pasos que avanzan solos mientras se ven, o al tocarlos
+(() => {
+  const steps = $$(".demo__step");
+  const screens = $$(".screen");
+  if (!steps.length) return;
+  const STEP_MS = 5200;
+  let cur = 0, t0 = performance.now(), visible = false, hold = false;
+
+  function show(i) {
+    steps[cur].classList.remove("is-active");
+    steps[cur].setAttribute("aria-selected", "false");
+    steps[cur].style.setProperty("--p", 0);
+    screens[cur].classList.remove("is-active");
+    screens[cur].hidden = true;
+    cur = (i + steps.length) % steps.length;
+    steps[cur].classList.add("is-active");
+    steps[cur].setAttribute("aria-selected", "true");
+    screens[cur].hidden = false;
+    // reinicia las animaciones de la pantalla
+    void screens[cur].offsetWidth;
+    screens[cur].classList.add("is-active");
+    t0 = performance.now();
+  }
+
+  steps.forEach((s, i) => {
+    s.addEventListener("click", () => { show(i); });
+    s.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") { e.preventDefault(); show(cur + 1); steps[cur].focus(); }
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") { e.preventDefault(); show(cur - 1); steps[cur].focus(); }
+    });
+  });
+  const demo = document.querySelector(".demo");
+  demo.addEventListener("pointerenter", () => { hold = true; });
+  demo.addEventListener("pointerleave", () => { hold = false; t0 = performance.now() - (+steps[cur].style.getPropertyValue("--p") || 0) * STEP_MS; });
+
+  if (calm) return;
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((es) => {
+      visible = es[0].isIntersecting;
+      if (visible) t0 = performance.now();
+    }, { threshold: 0.4 }).observe(demo);
+  }
+  const tick = (now) => {
+    if (visible && !hold && !document.hidden) {
+      const p = clamp((now - t0) / STEP_MS);
+      steps[cur].style.setProperty("--p", p.toFixed(4));
+      if (p >= 1) show(cur + 1);
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+})();
+
+/* =========================================================
    7) Cotizador: los resultados cuentan hasta el valor nuevo
    ========================================================= */
 const montoInput = $("cot-monto");
