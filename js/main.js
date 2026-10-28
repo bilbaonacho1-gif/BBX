@@ -20,6 +20,212 @@ const intro = $("intro");
 const waFloat = document.querySelector(".wa-float");
 
 /* =========================================================
+   0) Idioma (ES/EN) y tema (oscuro/claro)
+   El español está en el HTML; el inglés, en este diccionario.
+   ========================================================= */
+const EN = {
+  "t1": "Home",
+  "t2": "About us",
+  "t3": "Services",
+  "t4": "Quote tool",
+  "t5": "Why us",
+  "t6": "Contact us",
+  "t7": "Cheque purchase",
+  "t8": "Post-dated cheque?",
+  "t9": "<em>Cash today.</em>",
+  "t10": "We buy your post-dated cheques so your company gets liquidity without waiting for the due date.",
+  "t11": "Get a quote",
+  "t12": "Learn more",
+  "t13": "Your ECHEQs,",
+  "t14": "<em>paid the same day.</em>",
+  "t15": "Endorse it from your online banking and receive the transfer in your account, without leaving the office.",
+  "t16": "Sell an ECHEQ",
+  "t17": "How it works",
+  "t18": "Clear quote",
+  "t19": "Know what you get",
+  "t20": "<em>before you endorse.</em>",
+  "t21": "We send you the amount, rate, days and discount for your cheque in writing, so you can decide with all the information.",
+  "t22": "Use the quote tool",
+  "t23": "Why BBX",
+  "t24": "Quote",
+  "t25": "Same day",
+  "t26": "Payment credited",
+  "t27": "Cheques we handle",
+  "t28": "Paper and ECHEQ",
+  "t29": "Financial solutions for companies <em>on the move.</em>",
+  "t30": "At BBX Soluciones Financieras SA we buy post-dated cheques and ECHEQs so companies and businesses get liquidity without waiting for the due date. We work quickly, transparently and one-on-one.",
+  "t31": "See services",
+  "t32": "Liquidity today for your post-dated cheques.",
+  "t33": "We buy your post-dated cheque or ECHEQ and pay you today, with a detailed quote before we proceed.",
+  "t34": "Drawer analysis",
+  "t35": "Help with endorsement",
+  "t36": "Transfer or cash",
+  "t37": "Paper cheques",
+  "t38": "Post-dated cheques from any bank. Endorse and get paid today, by transfer or in cash.",
+  "t39": "Electronic cheques from any bank. Endorse them to us from your online banking and receive the transfer the same day.",
+  "t40": "Amount, rate, days and discount in writing, after reviewing the cheque and the drawer.",
+  "t41": "Quick answers",
+  "t42": "What everyone asks <em>before selling a cheque.</em>",
+  "t43": "Quote",
+  "t44": "Simulate your cheque",
+  "t45": "Simulation",
+  "t46": "How much do I get for a $500,000 cheque due in 30 days?",
+  "t47": "And for a $2,000,000 one due in 90 days?",
+  "t48": "Operate",
+  "t49": "Cheques and ECHEQ",
+  "t50": "Requirements",
+  "t51": "What do I need to sell a cheque?",
+  "t52": "How do I endorse an ECHEQ from my bank?",
+  "t53": "Get paid",
+  "t54": "Payment",
+  "t55": "Timing",
+  "t56": "How long until the payment is credited?",
+  "t57": "Is the quote tool result an offer?",
+  "t58": "What is <em>your cheque</em> worth today?",
+  "t59": "Enter the amount, due date and rate, and instantly see an estimate of what you would get. We confirm the final quote after reviewing the cheque.",
+  "t60": "Paper cheques and ECHEQ",
+  "t61": "Quote confirmed the same day",
+  "t62": "No hidden costs: we show you the discount",
+  "t63": "How much do you get for your cheque?",
+  "t64": "Cheque amount",
+  "t65": "Due date",
+  "t66": "Monthly rate (%)",
+  "t67": "You get today",
+  "t68": "Days to due date",
+  "t69": "Discount",
+  "t70": "Estimate using simple discount. The final rate depends on the drawer, the term and the type of cheque. Fees and taxes not included.",
+  "t71": "Request a real quote",
+  "t72": "More than liquidity, <em>trust.</em>",
+  "t73": "Every transaction starts with a written quote: amount, rate, days and discount. No fine print, with an advisor who knows your case from start to finish.",
+  "t74": "Let's talk",
+  "t75": "Transparency",
+  "t76": "Same-day reply",
+  "t77": "One-on-one service",
+  "t78": "Long-term relationships",
+  "t79": "The X in BBX is the <em>crossing</em> between the cheque you collect tomorrow and the cash your company needs today. We make it happen, quickly and with clear numbers.",
+  "t80": "Sell your cheque in three steps",
+  "t81": "Send the details",
+  "t82": "Send us a photo of the cheque (front and back) or the ECHEQ details on WhatsApp: amount, payment date, bank and drawer.",
+  "t83": "Get the quote",
+  "t84": "We review the cheque and tell you the same day how much you get, with the rate and discount itemised.",
+  "t85": "You endorse the cheque or ECHEQ and we transfer the money to your account, or you pick it up in cash.",
+  "t86": "Hi, I want to sell this cheque. It is due in 60 days.",
+  "t87": "Quote · Example",
+  "t88": "Amount",
+  "t89": "Monthly rate",
+  "t90": "You get",
+  "t91": "Great, let's go ahead!",
+  "t92": "Transfer received",
+  "t93": "$ 930.000 credited to your account",
+  "t94": "Done, the payment is in your account. Thanks for choosing us!",
+  "t95": "Example values, as in the quote tool.",
+  "t96": "online",
+  "t97": "FAQ",
+  "t98": "Frequently asked questions",
+  "t99": "Any other questions? Message us on WhatsApp and we will reply the same day.",
+  "t100": "What does discounting a cheque mean?",
+  "t101": "It means exchanging a post-dated cheque for money today. You receive the cheque amount minus a discount that depends on the rate and the days left until it is due.",
+  "t102": "Which cheques do you buy?",
+  "t103": "Post-dated paper cheques and ECHEQs from Argentine banks. Each transaction is assessed based on the drawer, the amount and the term.",
+  "t104": "What do I need to operate?",
+  "t105": "ID (DNI) and tax ID (CUIT/CUIL) of the holder or the company, the cheque or ECHEQ in your name or endorsed to you and, if you are paid by transfer, your CBU or alias. Companies also provide their bylaws and the signatory’s power of attorney.",
+  "t106": "How long does it take?",
+  "t107": "The quote comes the same day. Once the cheque is endorsed, payment is usually credited within 24 business hours.",
+  "t108": "How do I endorse an ECHEQ?",
+  "t109": "In your online banking, go to the ECHEQ section, choose the cheque, select Endorse and enter the CUIT we give you. We guide you step by step.",
+  "t110": "No. It is an estimate that does not include fees or taxes. We confirm the final quote in writing after reviewing the cheque and the drawer.",
+  "t111": "Let's talk about <em>your next cheque.</em>",
+  "t112": "Fill in the form and an advisor will reply on WhatsApp with the quote.",
+  "t113": "Monday to Friday, 10 am to 6 pm",
+  "t114": "Name or company name",
+  "t115": "Phone",
+  "t116": "Reason for contact",
+  "t117": "Sell a cheque",
+  "t118": "Ask a question",
+  "t119": "Message (optional)",
+  "t120": "Send via WhatsApp",
+  "t121": "Sending opens WhatsApp with your message ready to go.",
+  "t122": "© <span id=\"year\">2026</span> BBX Soluciones Financieras SA. All rights reserved.",
+  "t123": "Legal notice",
+  "t124": "This site is for information purposes only and does not constitute a public offering or financial, legal or tax advice. The rates, terms and values published, including the results of the quote tool, are for reference only, do not include fees or taxes and are not binding. Every transaction is subject to prior review of the cheque and the drawer, to acceptance by BBX Soluciones Financieras SA and to compliance with its internal policies. BBX Soluciones Financieras SA is not a financial institution covered by Law 21,526 and is not authorized or supervised by the BCRA (Central Bank of Argentina) or the CNV (National Securities Commission).",
+  "t125": "Cheque transactions involve risks, including default or insolvency of the drawer, rejection or insufficient funds at maturity, formal or standing defects in the instrument and the liability that may fall on the endorser under applicable law. The values and conditions reported do not guarantee any result. Before operating, interested parties should assess their particular situation and, if necessary, consult their own advisors. This English version is provided for convenience only; in case of discrepancy, the Spanish version prevails.",
+  "t126": "Previous",
+  "t127": "Next",
+  "t128": "Message us on WhatsApp",
+  "t129": "Quote a paper cheque",
+  "t130": "Ask about an ECHEQ",
+  "t131": "See how it works",
+  "t132": "Due date, bank, drawer…",
+  "themeToLight": "Switch to light mode",
+  "themeToDark": "Switch to dark mode",
+  "langLabel": "Language: English"
+};
+const STR = {
+  es: { formError: "Completá tu nombre y teléfono para que podamos responderte.", hello: "Hola BBX, quiero:", name: "Nombre", phone: "Teléfono", amount: "Importe", dueDate: "Fecha de cobro", themeToLight: "Activar modo claro", themeToDark: "Activar modo oscuro", langLabel: "Idioma: español" },
+  en: { formError: "Please enter your name and phone so we can get back to you.", hello: "Hi BBX, I want to:", name: "Name", phone: "Phone", amount: "Amount", dueDate: "Due date", themeToLight: EN.themeToLight, themeToDark: EN.themeToDark, langLabel: EN.langLabel },
+};
+const i18nEls = $$("[data-i18n]").map((el) => ({ el, key: el.dataset.i18n, es: el.innerHTML }));
+const i18nAttrs = $$("[data-i18n-attr]").flatMap((el) => el.dataset.i18nAttr.split(";").map((pair) => {
+  const [attr, key] = pair.split(":");
+  return { el, attr, key, es: el.getAttribute(attr) };
+}));
+let lang = root.lang === "en" ? "en" : "es";
+const t = (k) => STR[lang][k];
+
+function applyLang(next) {
+  lang = next;
+  root.lang = next;
+  i18nEls.forEach(({ el, key, es }) => { el.innerHTML = next === "en" && EN[key] ? EN[key] : es; });
+  i18nAttrs.forEach(({ el, attr, key, es }) => {
+    if (key === "themeToLight" || key === "langLabel") return;
+    el.setAttribute(attr, next === "en" && EN[key] ? EN[key] : es);
+  });
+  $("lang-current").textContent = next.toUpperCase();
+  $("lang-btn").setAttribute("aria-label", t("langLabel"));
+  $$(".lang-menu [data-lang]").forEach((b) => b.setAttribute("aria-current", String(b.dataset.lang === next)));
+  updateThemeLabel();
+  wrapPhrase();
+  if (!calm) requestFrame();
+  $("year").textContent = new Date().getFullYear();
+  try { localStorage.setItem("bbx-lang", next); } catch (e) {}
+}
+
+const themeBtn = $("theme-btn");
+const isLight = () => root.getAttribute("data-bbx-theme") === "light";
+function updateThemeLabel() {
+  themeBtn.setAttribute("aria-pressed", String(isLight()));
+  themeBtn.setAttribute("aria-label", isLight() ? t("themeToDark") : t("themeToLight"));
+}
+function applyTheme(light) {
+  root.classList.add("theme-anim");
+  if (light) root.setAttribute("data-bbx-theme", "light");
+  else root.removeAttribute("data-bbx-theme");
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.content = light ? "#F2F4F8" : "#0A0F1A";
+  updateThemeLabel();
+  try { localStorage.setItem("bbx-theme", light ? "light" : "dark"); } catch (e) {}
+  setTimeout(() => root.classList.remove("theme-anim"), 700);
+}
+themeBtn.addEventListener("click", () => applyTheme(!isLight()));
+
+const langBtn = $("lang-btn");
+const langMenu = $("lang-menu");
+function toggleLangMenu(open) {
+  langMenu.hidden = !open;
+  langBtn.setAttribute("aria-expanded", String(open));
+}
+langBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleLangMenu(langMenu.hidden); });
+langMenu.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-lang]");
+  if (!b) return;
+  applyLang(b.dataset.lang);
+  toggleLangMenu(false);
+  langBtn.focus();
+});
+document.addEventListener("click", (e) => { if (!e.target.closest(".lang")) toggleLangMenu(false); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !langMenu.hidden) { toggleLangMenu(false); langBtn.focus(); } });
+
+/* =========================================================
    1) Apertura: primero el logo solo (las piezas se arman),
       después la pantalla se abre en diagonal y aparece la portada.
    ========================================================= */
@@ -204,28 +410,29 @@ if (calm || !("IntersectionObserver" in window)) {
    ========================================================= */
 const phrase = document.querySelector("[data-words]");
 let words = [];
-if (phrase) {
-  phrase.innerHTML = phrase.innerHTML.replace("el cruce", "el <em>cruce</em>");
+function wrapPhrase() {
+  if (!phrase) return;
   const wrapWords = (node) => [...node.childNodes].forEach((n) => {
     if (n.nodeType === 3) {
       const frag = document.createDocumentFragment();
-      n.textContent.split(/(\s+)/).forEach((t) => {
-        if (!t) return;
-        if (/^\s+$/.test(t)) frag.appendChild(document.createTextNode(t));
+      n.textContent.split(/(\s+)/).forEach((tok) => {
+        if (!tok) return;
+        if (/^\s+$/.test(tok)) frag.appendChild(document.createTextNode(tok));
         else {
           const s = document.createElement("span");
           s.className = "w";
-          s.textContent = t;
+          s.textContent = tok;
           frag.appendChild(s);
         }
       });
       n.replaceWith(frag);
-    } else wrapWords(n);
+    } else if (!n.classList || !n.classList.contains("w")) wrapWords(n);
   });
   wrapWords(phrase);
   words = $$(".w", phrase);
   if (calm) words.forEach((w) => w.classList.add("is-lit"));
 }
+wrapPhrase();
 
 /* =========================================================
    6) Al bajar: encabezado sólido, parallax, palabras y sección activa
@@ -468,7 +675,7 @@ $("cot-cta").addEventListener("click", () => {
   if (r.monto) $("c-importe").value = "$ " + fmtInt.format(r.monto);
   if (fechaInput.value) {
     const [y, m, d] = fechaInput.value.split("-");
-    if (!$("c-mensaje").value) $("c-mensaje").value = `Fecha de cobro: ${d}/${m}/${y}`;
+    if (!$("c-mensaje").value) $("c-mensaje").value = `${t("dueDate")}: ${d}/${m}/${y}`;
   }
 });
 
@@ -494,7 +701,7 @@ form.addEventListener("submit", (e) => {
   const tel = $("c-tel").value.trim();
 
   if (!nombre || !tel) {
-    errorBox.textContent = "Completá tu nombre y teléfono para que podamos responderte.";
+    errorBox.textContent = t("formError");
     errorBox.hidden = false;
     (!nombre ? $("c-nombre") : $("c-tel")).focus();
     return;
@@ -502,11 +709,11 @@ form.addEventListener("submit", (e) => {
   errorBox.hidden = true;
 
   const lineas = [
-    `Hola BBX, quiero: ${$("c-servicio").value}.`,
-    `Nombre: ${nombre}`,
-    `Teléfono: ${tel}`,
+    `${t("hello")} ${$("c-servicio").selectedOptions[0].textContent}.`,
+    `${t("name")}: ${nombre}`,
+    `${t("phone")}: ${tel}`,
   ];
-  if (importeInput.value) lineas.push(`Importe: ${importeInput.value}`);
+  if (importeInput.value) lineas.push(`${t("amount")}: ${importeInput.value}`);
   const msg = $("c-mensaje").value.trim();
   if (msg) lineas.push(msg);
 
@@ -516,4 +723,31 @@ form.addEventListener("submit", (e) => {
   else window.location.href = url;
 });
 
+/* =========================================================
+   9) Respuestas rápidas: simulan en el cotizador o abren la pregunta
+   ========================================================= */
+function flash(el) {
+  el.classList.remove("is-flash");
+  void el.offsetWidth;
+  el.classList.add("is-flash");
+}
+$$(".qcard[data-sim]").forEach((card) => card.addEventListener("click", () => {
+  const [monto, dias] = card.dataset.sim.split(",").map(Number);
+  montoInput.value = fmtInt.format(monto);
+  const d = new Date();
+  d.setDate(d.getDate() + dias);
+  fechaInput.value = isoDate(d);
+  $("cotizador").scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
+  setTimeout(() => { calcular({ duration: 900 }); flash(chequeCard); }, calm ? 0 : 700);
+}));
+$$(".qcard[data-faq]").forEach((card) => card.addEventListener("click", () => {
+  const item = $(card.dataset.faq);
+  item.open = true;
+  item.classList.add("is-visible");
+  item.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "center" });
+  setTimeout(() => flash(item), calm ? 0 : 600);
+}));
+
 $("year").textContent = new Date().getFullYear();
+updateThemeLabel();
+if (lang === "en") applyLang("en");

@@ -8,8 +8,8 @@ Es un sitio estático (HTML, CSS y JavaScript, sin dependencias ni compilación)
 
 ```
 index.html          Página principal (el logo está vectorizado adentro, en el bloque "sprite")
-css/styles.css      Estilos y animaciones (paleta azul petróleo al principio, en :root)
-js/main.js          Apertura, carrusel, apariciones, cotizador y formulario a WhatsApp
+css/styles.css      Estilos y animaciones (colores al principio: tema oscuro y modo claro)
+js/main.js          Idioma ES/EN, tema, apertura, carrusel, apariciones, cotizador y formulario
 img/ciudad.jpg      Fondo: ciudad de noche desde una oficina (portada y Nosotros)
 img/echeq.jpg       Fondo: red digital (portada, ECHEQ)
 img/cheque.jpg      Fondo: cheque sobre un escritorio (portada y Por qué nosotros)
@@ -20,6 +20,15 @@ img/favicon.svg     Ícono de la pestaña (la X)
 
 Los fondos son ilustraciones generadas para el sitio. Para usar fotos propias, reemplazá
 los archivos de `img/` por otros con el mismo nombre (ideal 1920 × 1080, JPG).
+
+## Colores, tema e idioma
+
+- Paleta de marca: #0A0F1A, #0F1E36, #1E5BFF, #F2F4F8 y #6B7280. Tema oscuro por defecto y botón
+  para modo claro (sol/luna en el encabezado). La portada, las tarjetas con foto y el teléfono quedan
+  siempre oscuros.
+- Idioma español/inglés con el selector ES ▾. El español está en `index.html` y el inglés en el
+  diccionario `EN` al principio de `js/main.js`: cada texto tiene una clave `data-i18n`.
+- El sitio recuerda el tema y el idioma elegidos.
 
 ## Datos que se pueden cambiar
 
@@ -40,6 +49,8 @@ los archivos de `img/` por otros con el mismo nombre (ideal 1920 × 1080, JPG).
   con un brillo que acompaña al cursor y la flecha que se ilumina. Toda la tarjeta es clickeable.
 - Cómo funciona: demo con un teléfono que muestra cada paso (mensaje con el cheque, cotización y
   transferencia recibida). Avanza sola mientras se ve y se puede elegir cada paso.
+- Respuestas rápidas: tres columnas (Cotizá, Operá, Cobrá) con preguntas. Las de simulación cargan
+  el cotizador con ese importe y plazo; las demás abren la pregunta frecuente correspondiente.
 - X flotantes del logo en el fondo de varias secciones, que se mueven con el mouse y el scroll.
 - El fondo de la portada acompaña un poco el movimiento del mouse.
 - Con "reducir movimiento" activado en el dispositivo no se anima nada.
