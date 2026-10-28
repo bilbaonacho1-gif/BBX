@@ -205,7 +205,7 @@ if (calm || !("IntersectionObserver" in window)) {
 const phrase = document.querySelector("[data-words]");
 let words = [];
 if (phrase) {
-  phrase.innerHTML = phrase.innerHTML.replace("el cruce:", "el <em>cruce:</em>");
+  phrase.innerHTML = phrase.innerHTML.replace("el cruce", "el <em>cruce</em>");
   const wrapWords = (node) => [...node.childNodes].forEach((n) => {
     if (n.nodeType === 3) {
       const frag = document.createDocumentFragment();
@@ -337,22 +337,6 @@ montoInput.addEventListener("input", () => {
 fechaInput.addEventListener("input", () => calcular());
 tasaInput.addEventListener("input", () => calcular());
 
-const modeGroup = document.querySelector(".mode");
-let mode = "vender";
-function setMode(next) {
-  mode = next;
-  const vender = mode === "vender";
-  modeGroup.classList.toggle("is-invertir", !vender);
-  $("mode-vender").classList.toggle("is-active", vender);
-  $("mode-invertir").classList.toggle("is-active", !vender);
-  $("mode-vender").setAttribute("aria-pressed", String(vender));
-  $("mode-invertir").setAttribute("aria-pressed", String(!vender));
-  $("cot-title").textContent = vender ? "¿Cuánto recibís por tu cheque?" : "¿Cuánto ganás invirtiendo en un cheque?";
-  $("lbl-neto").textContent = vender ? "Recibís hoy" : "Invertís hoy";
-  $("lbl-desc").textContent = vender ? "Descuento" : "Tu ganancia";
-}
-$("mode-vender").addEventListener("click", () => setMode("vender"));
-$("mode-invertir").addEventListener("click", () => setMode("invertir"));
 
 // Los resultados cuentan desde cero cuando el cotizador aparece en pantalla
 calcular({ duration: 0 });
@@ -370,7 +354,7 @@ if (!calm && "IntersectionObserver" in window) {
 // "Pedir cotización real" pasa los datos del cotizador al formulario
 $("cot-cta").addEventListener("click", () => {
   const r = resultado();
-  $("c-servicio").value = mode === "vender" ? "Vender un cheque" : "Invertir en cheques";
+  $("c-servicio").value = "Vender un cheque";
   if (r.monto) $("c-importe").value = "$ " + fmtInt.format(r.monto);
   if (fechaInput.value) {
     const [y, m, d] = fechaInput.value.split("-");

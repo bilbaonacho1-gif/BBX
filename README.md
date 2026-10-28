@@ -1,6 +1,6 @@
 # BBX Soluciones Financieras SA
 
-Sitio web de BBX Soluciones Financieras SA: compra y venta de cheques y ECHEQ.
+Sitio web de BBX Soluciones Financieras SA: compra de cheques de pago diferido y ECHEQ.
 
 Es un sitio estático (HTML, CSS y JavaScript, sin dependencias ni compilación).
 
