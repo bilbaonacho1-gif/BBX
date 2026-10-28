@@ -23,6 +23,15 @@ const waFloat = document.querySelector(".wa-float");
    El español está en el HTML; el inglés, en este diccionario.
    ========================================================= */
 const EN = {
+  "q_rate": "Monthly rate",
+  "q_note": "Estimate. Fees and taxes not included.",
+  "q_open": "Open in the quote tool",
+  "q_lbl_concept": "Concepts",
+  "q_lbl_cheques": "Cheques",
+  "q_lbl_contact": "Contact",
+  "q_other_q": "Any other questions?",
+  "q_other_a": "Message us on WhatsApp and we will reply the same day.",
+  "q_other_go": "Message us on WhatsApp",
   "t1": "Home",
   "t2": "About us",
   "t3": "Services",
@@ -620,28 +629,53 @@ form.addEventListener("submit", (e) => {
 });
 
 /* =========================================================
-   9) Respuestas rápidas: simulan en el cotizador o abren la pregunta
+   9) Respuestas rápidas: cada pregunta se abre debajo de su tarjeta
    ========================================================= */
 function flash(el) {
   el.classList.remove("is-flash");
   void el.offsetWidth;
   el.classList.add("is-flash");
 }
-$$(".qcard[data-sim]").forEach((card) => card.addEventListener("click", () => {
-  const [monto, dias] = card.dataset.sim.split(",").map(Number);
-  montoInput.value = fmtInt.format(monto);
+// Cada pregunta se abre debajo de su tarjeta; al abrir una se cierra la anterior
+function simValues(sim) {
+  const [monto, dias] = sim.split(",").map(Number);
+  const tasa = Math.max(0, parseFloat(tasaInput.value) || 0) / 100;
+  const descuento = Math.min(monto, monto * tasa * (dias / 30));
+  return { monto, dias, tasa, descuento, neto: monto - descuento };
+}
+function fillSim(panel) {
+  const box = panel.querySelector(".qsim");
+  if (!box) return;
+  const v = simValues(box.dataset.sim);
+  const pct = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 2 }).format(v.tasa * 100);
+  box.querySelector(".qsim__tasa").textContent = `${pct} %`;
+  const neto = { el: box.querySelector(".qsim__neto"), fmt: (x) => fmtMoney.format(x), value: 0 };
+  const desc = { el: box.querySelector(".qsim__desc"), fmt: (x) => fmtMoney.format(x), value: 0 };
+  tweenTo(neto, Math.round(v.neto), { from: 0, duration: 900, delay: 150 });
+  tweenTo(desc, Math.round(v.descuento), { from: 0, duration: 900, delay: 150 });
+}
+const qitems = $$(".qitem");
+function setOpen(it, open) {
+  it.classList.toggle("is-open", open);
+  it.querySelector(".qcard").setAttribute("aria-expanded", String(open));
+  if (open) fillSim(it);
+}
+qitems.forEach((it) => {
+  it.querySelector(".qcard").addEventListener("click", () => {
+    const open = !it.classList.contains("is-open");
+    qitems.forEach((o) => { if (o !== it && o.classList.contains("is-open")) setOpen(o, false); });
+    setOpen(it, open);
+  });
+});
+// "Abrir en el cotizador" pasa el importe y el plazo de la simulación
+$$(".qsim__go").forEach((btn) => btn.addEventListener("click", () => {
+  const v = simValues(btn.closest(".qpanel").querySelector(".qsim").dataset.sim);
+  montoInput.value = fmtInt.format(v.monto);
   const d = new Date();
-  d.setDate(d.getDate() + dias);
+  d.setDate(d.getDate() + v.dias);
   fechaInput.value = isoDate(d);
   $("cotizador").scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
   setTimeout(() => { calcular({ duration: 900 }); flash(chequeCard); }, calm ? 0 : 700);
-}));
-$$(".qcard[data-faq]").forEach((card) => card.addEventListener("click", () => {
-  const item = $(card.dataset.faq);
-  item.open = true;
-  item.classList.add("is-visible");
-  item.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "center" });
-  setTimeout(() => flash(item), calm ? 0 : 600);
 }));
 
 $("year").textContent = new Date().getFullYear();

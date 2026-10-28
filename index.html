@@ -230,14 +230,51 @@
             <span class="disc__n">1</span>
             <div><h3 data-i18n="t43">Cotizá</h3><p data-i18n="t44">Simulá tu cheque</p></div>
           </div>
-          <button class="qcard" type="button" data-sim="500000,30">
-            <span class="qcard__label"><b>01</b> <span data-i18n="t45">Simulación</span></span>
-            <span class="qcard__q" data-i18n="t46">¿Cuánto recibo por un cheque de $&nbsp;500.000 a 30&nbsp;días?</span><i class="qcard__go" aria-hidden="true"></i>
-          </button>
-          <button class="qcard" type="button" data-sim="2000000,90">
-            <span class="qcard__label"><b>02</b> <span data-i18n="t45">Simulación</span></span>
-            <span class="qcard__q" data-i18n="t47">¿Y por uno de $&nbsp;2.000.000 a 90&nbsp;días?</span><i class="qcard__go" aria-hidden="true"></i>
-          </button>
+          <div class="qitem">
+            <button class="qcard" type="button" aria-expanded="false" aria-controls="qa-1">
+              <span class="qcard__label"><b>01</b> <span data-i18n="t45">Simulación</span></span>
+              <span class="qcard__q" data-i18n="t46">¿Cuánto recibo por un cheque de $&nbsp;500.000 a 30&nbsp;días?</span><i class="qcard__go" aria-hidden="true"></i>
+            </button>
+            <div class="qpanel" id="qa-1" role="region">
+              <div class="qpanel__in">
+                <dl class="qsim" data-sim="500000,30">
+                  <div><dt data-i18n="t67">Recibís hoy</dt><dd class="qsim__neto">–</dd></div>
+                  <div><dt data-i18n="t69">Descuento</dt><dd class="qsim__desc">–</dd></div>
+                  <div><dt data-i18n="q_rate">Tasa mensual</dt><dd class="qsim__tasa">–</dd></div>
+                </dl>
+                <p class="qpanel__note" data-i18n="q_note">Cálculo de referencia. No incluye gastos ni impuestos.</p>
+                <button class="link-more qsim__go" type="button"><span data-i18n="q_open">Abrir en el cotizador</span> <i class="circ" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="qitem">
+            <button class="qcard" type="button" aria-expanded="false" aria-controls="qa-2">
+              <span class="qcard__label"><b>02</b> <span data-i18n="t45">Simulación</span></span>
+              <span class="qcard__q" data-i18n="t47">¿Y por uno de $&nbsp;2.000.000 a 90&nbsp;días?</span><i class="qcard__go" aria-hidden="true"></i>
+            </button>
+            <div class="qpanel" id="qa-2" role="region">
+              <div class="qpanel__in">
+                <dl class="qsim" data-sim="2000000,90">
+                  <div><dt data-i18n="t67">Recibís hoy</dt><dd class="qsim__neto">–</dd></div>
+                  <div><dt data-i18n="t69">Descuento</dt><dd class="qsim__desc">–</dd></div>
+                  <div><dt data-i18n="q_rate">Tasa mensual</dt><dd class="qsim__tasa">–</dd></div>
+                </dl>
+                <p class="qpanel__note" data-i18n="q_note">Cálculo de referencia. No incluye gastos ni impuestos.</p>
+                <button class="link-more qsim__go" type="button"><span data-i18n="q_open">Abrir en el cotizador</span> <i class="circ" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="qitem">
+            <button class="qcard" type="button" aria-expanded="false" aria-controls="qa-3">
+              <span class="qcard__label"><b>03</b> <span data-i18n="q_lbl_concept">Conceptos</span></span>
+              <span class="qcard__q" data-i18n="t100">¿Qué significa descontar un cheque?</span><i class="qcard__go" aria-hidden="true"></i>
+            </button>
+            <div class="qpanel" id="qa-3" role="region">
+              <div class="qpanel__in">
+                <p class="qpanel__text" data-i18n="t101">Es cambiar un cheque de pago diferido por dinero hoy. Recibís el importe del cheque menos un descuento que depende de la tasa y de los días que faltan para su cobro.</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="disc__col reveal">
           <div class="disc__head">
@@ -245,14 +282,39 @@
             <span class="disc__n">2</span>
             <div><h3 data-i18n="t48">Operá</h3><p data-i18n="t49">Cheques y ECHEQ</p></div>
           </div>
-          <button class="qcard" type="button" data-faq="faq-req">
-            <span class="qcard__label"><b>03</b> <span data-i18n="t50">Requisitos</span></span>
-            <span class="qcard__q" data-i18n="t51">¿Qué necesito para vender un cheque?</span><i class="qcard__go" aria-hidden="true"></i>
-          </button>
-          <button class="qcard" type="button" data-faq="faq-echeq">
-            <span class="qcard__label"><b>04</b> <span>ECHEQ</span></span>
-            <span class="qcard__q" data-i18n="t52">¿Cómo endoso un ECHEQ desde mi banco?</span><i class="qcard__go" aria-hidden="true"></i>
-          </button>
+          <div class="qitem">
+            <button class="qcard" type="button" aria-expanded="false" aria-controls="qa-4">
+              <span class="qcard__label"><b>04</b> <span data-i18n="t50">Requisitos</span></span>
+              <span class="qcard__q" data-i18n="t51">¿Qué necesito para vender un cheque?</span><i class="qcard__go" aria-hidden="true"></i>
+            </button>
+            <div class="qpanel" id="qa-4" role="region">
+              <div class="qpanel__in">
+                <p class="qpanel__text" data-i18n="t105">DNI y CUIT/CUIL del titular o de la empresa, el cheque o ECHEQ a tu nombre o endosado a tu favor y, si cobrás por transferencia, tu CBU o alias. Las empresas suman estatuto y poder del firmante.</p>
+              </div>
+            </div>
+          </div>
+          <div class="qitem">
+            <button class="qcard" type="button" aria-expanded="false" aria-controls="qa-5">
+              <span class="qcard__label"><b>05</b> <span>ECHEQ</span></span>
+              <span class="qcard__q" data-i18n="t52">¿Cómo endoso un ECHEQ desde mi banco?</span><i class="qcard__go" aria-hidden="true"></i>
+            </button>
+            <div class="qpanel" id="qa-5" role="region">
+              <div class="qpanel__in">
+                <p class="qpanel__text" data-i18n="t109">Desde tu home banking, en la sección ECHEQ, elegís el cheque, la opción Endosar e ingresás el CUIT que te indicamos. Te guiamos paso a paso.</p>
+              </div>
+            </div>
+          </div>
+          <div class="qitem">
+            <button class="qcard" type="button" aria-expanded="false" aria-controls="qa-6">
+              <span class="qcard__label"><b>06</b> <span data-i18n="q_lbl_cheques">Cheques</span></span>
+              <span class="qcard__q" data-i18n="t102">¿Qué cheques compran?</span><i class="qcard__go" aria-hidden="true"></i>
+            </button>
+            <div class="qpanel" id="qa-6" role="region">
+              <div class="qpanel__in">
+                <p class="qpanel__text" data-i18n="t103">Cheques de pago diferido físicos y ECHEQ de bancos argentinos. Cada operación se evalúa según el librador, el monto y el plazo.</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="disc__col reveal">
           <div class="disc__head">
@@ -260,14 +322,40 @@
             <span class="disc__n">3</span>
             <div><h3 data-i18n="t53">Cobrá</h3><p data-i18n="t54">Acreditación</p></div>
           </div>
-          <button class="qcard" type="button" data-faq="faq-tiempo">
-            <span class="qcard__label"><b>05</b> <span data-i18n="t55">Plazos</span></span>
-            <span class="qcard__q" data-i18n="t56">¿Cuánto tarda en acreditarse el pago?</span><i class="qcard__go" aria-hidden="true"></i>
-          </button>
-          <button class="qcard" type="button" data-faq="faq-oferta">
-            <span class="qcard__label"><b>06</b> <span data-i18n="t24">Cotización</span></span>
-            <span class="qcard__q" data-i18n="t57">¿El resultado del cotizador es una oferta?</span><i class="qcard__go" aria-hidden="true"></i>
-          </button>
+          <div class="qitem">
+            <button class="qcard" type="button" aria-expanded="false" aria-controls="qa-7">
+              <span class="qcard__label"><b>07</b> <span data-i18n="t55">Plazos</span></span>
+              <span class="qcard__q" data-i18n="t56">¿Cuánto tarda en acreditarse el pago?</span><i class="qcard__go" aria-hidden="true"></i>
+            </button>
+            <div class="qpanel" id="qa-7" role="region">
+              <div class="qpanel__in">
+                <p class="qpanel__text" data-i18n="t107">La cotización sale en el día. Una vez endosado el cheque, el pago suele acreditarse dentro de las 24 horas hábiles.</p>
+              </div>
+            </div>
+          </div>
+          <div class="qitem">
+            <button class="qcard" type="button" aria-expanded="false" aria-controls="qa-8">
+              <span class="qcard__label"><b>08</b> <span data-i18n="t24">Cotización</span></span>
+              <span class="qcard__q" data-i18n="t57">¿El resultado del cotizador es una oferta?</span><i class="qcard__go" aria-hidden="true"></i>
+            </button>
+            <div class="qpanel" id="qa-8" role="region">
+              <div class="qpanel__in">
+                <p class="qpanel__text" data-i18n="t110">No. Es un cálculo de referencia que no incluye gastos ni impuestos. La cotización final la confirmamos por escrito después de analizar el cheque y el librador.</p>
+              </div>
+            </div>
+          </div>
+          <div class="qitem">
+            <button class="qcard" type="button" aria-expanded="false" aria-controls="qa-9">
+              <span class="qcard__label"><b>09</b> <span data-i18n="q_lbl_contact">Contacto</span></span>
+              <span class="qcard__q" data-i18n="q_other_q">¿Tenés otra duda?</span><i class="qcard__go" aria-hidden="true"></i>
+            </button>
+            <div class="qpanel" id="qa-9" role="region">
+              <div class="qpanel__in">
+                <p class="qpanel__text" data-i18n="q_other_a">Escribinos por WhatsApp y te respondemos en el día.</p>
+                <a class="link-more" href="https://wa.me/5491157502360"><span data-i18n="q_other_go">Escribir por WhatsApp</span> <i class="circ" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -458,43 +546,6 @@
           </div>
           <p class="phone__note" data-i18n="t95">Valores de ejemplo, como en el cotizador.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Preguntas ===== -->
-  <section class="faq-sec" id="preguntas">
-    <div class="wrap faq-grid">
-      <header class="section-head reveal">
-        <p class="eyebrow" data-i18n="t97">Preguntas frecuentes</p>
-        <h2 data-i18n="t98">Lo que más nos preguntan</h2>
-        <p class="muted" data-i18n="t99">¿Tenés otra duda? Escribinos por WhatsApp y te respondemos en el día.</p>
-      </header>
-      <div class="faq" data-stagger>
-        <details class="reveal" id="faq-descontar">
-          <summary data-i18n="t100">¿Qué significa descontar un cheque?</summary>
-          <p data-i18n="t101">Es cambiar un cheque de pago diferido por dinero hoy. Recibís el importe del cheque menos un descuento que depende de la tasa y de los días que faltan para su cobro.</p>
-        </details>
-        <details class="reveal" id="faq-compran">
-          <summary data-i18n="t102">¿Qué cheques compran?</summary>
-          <p data-i18n="t103">Cheques de pago diferido físicos y ECHEQ de bancos argentinos. Cada operación se evalúa según el librador, el monto y el plazo.</p>
-        </details>
-        <details class="reveal" id="faq-req">
-          <summary data-i18n="t104">¿Qué necesito para operar?</summary>
-          <p data-i18n="t105">DNI y CUIT/CUIL del titular o de la empresa, el cheque o ECHEQ a tu nombre o endosado a tu favor y, si cobrás por transferencia, tu CBU o alias. Las empresas suman estatuto y poder del firmante.</p>
-        </details>
-        <details class="reveal" id="faq-tiempo">
-          <summary data-i18n="t106">¿Cuánto tarda la operación?</summary>
-          <p data-i18n="t107">La cotización sale en el día. Una vez endosado el cheque, el pago suele acreditarse dentro de las 24 horas hábiles.</p>
-        </details>
-        <details class="reveal" id="faq-echeq">
-          <summary data-i18n="t108">¿Cómo endoso un ECHEQ?</summary>
-          <p data-i18n="t109">Desde tu home banking, en la sección ECHEQ, elegís el cheque, la opción Endosar e ingresás el CUIT que te indicamos. Te guiamos paso a paso.</p>
-        </details>
-        <details class="reveal" id="faq-oferta">
-          <summary data-i18n="t57">¿El resultado del cotizador es una oferta?</summary>
-          <p data-i18n="t110">No. Es un cálculo de referencia que no incluye gastos ni impuestos. La cotización final la confirmamos por escrito después de analizar el cheque y el librador.</p>
-        </details>
       </div>
     </div>
   </section>
