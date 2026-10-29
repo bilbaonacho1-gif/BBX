@@ -1,4 +1,4 @@
-// BBX Soluciones Financieras SA — sin librerías.
+// BBX Finanzas SA — sin librerías.
 const CONFIG = {
   whatsapp: "5491157502360", // +54 9 11 5750-2360
 };
@@ -61,7 +61,7 @@ const EN = {
   "t27": "Cheques we handle",
   "t28": "Paper and ECHEQ",
   "t29": "Financial solutions for companies <em>on the move.</em>",
-  "t30": "At BBX Soluciones Financieras SA we buy post-dated cheques and ECHEQs so companies and businesses get liquidity without waiting for the due date. We work quickly, transparently and one-on-one.",
+  "t30": "At BBX Finanzas SA we buy post-dated cheques and ECHEQs so companies and businesses get liquidity without waiting for the due date. We work quickly, transparently and one-on-one.",
   "t31": "See services",
   "t32": "Liquidity today for your post-dated cheques.",
   "t33": "We buy your post-dated cheque or ECHEQ and pay you today, with a detailed quote before we proceed.",
@@ -153,9 +153,9 @@ const EN = {
   "t119": "Message (optional)",
   "t120": "Send via WhatsApp",
   "t121": "Sending opens WhatsApp with your message ready to go.",
-  "t122": "© <span id=\"year\">2026</span> BBX Soluciones Financieras SA. All rights reserved.",
+  "t122": "© <span id=\"year\">2026</span> BBX Finanzas SA. All rights reserved.",
   "t123": "Legal notice",
-  "t124": "This site is for information purposes only and does not constitute a public offering or financial, legal or tax advice. The rates, terms and values published, including the results of the quote tool, are for reference only, do not include fees or taxes and are not binding. Every transaction is subject to prior review of the cheque and the drawer, to acceptance by BBX Soluciones Financieras SA and to compliance with its internal policies. BBX Soluciones Financieras SA is not a financial institution covered by Law 21,526 and is not authorized or supervised by the BCRA (Central Bank of Argentina) or the CNV (National Securities Commission).",
+  "t124": "This site is for information purposes only and does not constitute a public offering or financial, legal or tax advice. The rates, terms and values published, including the results of the quote tool, are for reference only, do not include fees or taxes and are not binding. Every transaction is subject to prior review of the cheque and the drawer, to acceptance by BBX Finanzas SA and to compliance with its internal policies. BBX Finanzas SA is not a financial institution covered by Law 21,526 and is not authorized or supervised by the BCRA (Central Bank of Argentina) or the CNV (National Securities Commission).",
   "t125": "Cheque transactions involve risks, including default or insolvency of the drawer, rejection or insufficient funds at maturity, formal or standing defects in the instrument and the liability that may fall on the endorser under applicable law. The values and conditions reported do not guarantee any result. Before operating, interested parties should assess their particular situation and, if necessary, consult their own advisors. This English version is provided for convenience only; in case of discrepancy, the Spanish version prevails.",
   "t126": "Previous",
   "t127": "Next",
